@@ -126,16 +126,23 @@ return separatedArrays;
 const pathFinder = function(vnodes){
     console.log(vnodes);
     let path = [];
+
+    //gets all the keys of vndoes(distances)
     let keys = Object.keys(vnodes);
     console.log(keys);
     for(let i =keys.length-1;i>=0;i--){
         let objAr = vnodes[keys[i]];
+        //iterate for each key from the highest(last key)
         if(i===keys.length-1){
+        //no need to choose if only one node present
         let obj = objAr[objAr.length-1];
         path.push(obj);
         }
-
+        //if multiple node present
         else{
+
+            //then the previous node pushed is referenvced
+            //only the node which can be reached from previous node out of all the nodes in onjAr is pushed
             let prev = path[path.length-1];
             let moves = movesFinder(prev.x,prev.y);
             loop2:  
@@ -150,6 +157,9 @@ const pathFinder = function(vnodes){
         }
         
     }
+
+    //follows bottom up
+    //pushes the target node first and builds up until root
     
     console.log(`It requires ${path.length-1} moves`);
     console.log(path);
